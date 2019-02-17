@@ -539,5 +539,48 @@ public static int Sum(BinNode<Integer> head)
 		}
 		return count;
 	}
+	
+	//פונקצית מעטפה לפונקציה התחתונה לה, היא מקבלת שני עצים, מגדירה את האיבר הראשון, ושולחת את הרשימה והעצים לתחתונה
+	public static Node <Integer> runTwotreesToNode (BinNode<Integer> t1,BinNode<Integer> t2 ){
+		//הרשימה שנשלחת לפונקציה מתחת
+		Node<Integer> N1;
+		//בודקים את האיבר הראשון משני העצים מכיוון שהרשימה לא יכולה להיות ריקה, אם שני האיברים  זהים, מכניסים את הערך שלהם - אם לא משאירים ריק
+		if (t1.getValue() == t2.getValue()) {
+			N1 = new Node<Integer>(t1.getValue());
+		}
+		else {
+			N1 = new Node<Integer>(null);
+		}
+		//שליחה לפונקציה השנייה, שם הרשימה נערכת מחדש
+		TwotreesToNode(t1, t2, N1);
+		return N1;
+		
+	}
+	//מופעלת ומזומנת באמצעות הפונקציה הנ"ל, הפונקציה הזו מקבלת שני עצים, ומחזירה רשימה מקושרת של המספרים שמשותפים לשניהם.
+	public static void TwotreesToNode(BinNode<Integer> t1, BinNode<Integer> t2, Node<Integer> N1 ) {
+		//בודק אם המספר הנוכחי בעץ הראשון קיים בעץ השני, אם כן, מכניס אותו לרשימה המשותפת
+		if (Tree_Ezer.IsNumIn(t2, t1.getValue())) {
+			if (N1.getNext()== null) {
+				N1.setNext(new Node<Integer>(t1.getValue()));
+			}
+			//אם יש איבר לאחר הרשימה וצריך ליצור איבר ביניהם, הפונקציה יוצרת שני צמתים חדשים ומעתיקה בעזרתם
+			else {
+				Node <Integer> N2 = new Node <Integer>(t1.getValue());
+				Node <Integer> pos = N1;
+				N2.setNext(pos.getNext());
+				pos.setNext(N2);
+			}
+		}
+		//התקדמות רקורסיבית צד שמאל
+		if (t1.hasLeft()) {
+		TwotreesToNode(t1.getLeft(), t2, N1);
+		}
+		
+		//התקדמות רקורסיבית צד ימין
+		if (t1.hasRight()) {
+		TwotreesToNode(t1.getRight(), t2, N1);
+		}
+	
+	}
   
   
