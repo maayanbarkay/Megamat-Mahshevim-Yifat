@@ -559,7 +559,7 @@ public static int Sum(BinNode<Integer> head)
 	//מופעלת ומזומנת באמצעות הפונקציה הנ"ל, הפונקציה הזו מקבלת שני עצים, ומחזירה רשימה מקושרת של המספרים שמשותפים לשניהם.
 	public static void TwotreesToNode(BinNode<Integer> t1, BinNode<Integer> t2, Node<Integer> N1 ) {
 		//בודק אם המספר הנוכחי בעץ הראשון קיים בעץ השני, אם כן, מכניס אותו לרשימה המשותפת
-		if (Tree_Ezer.IsNumIn(t2, t1.getValue())) {
+		if (IsNumIn(t2, t1.getValue())) {
 			if (N1.getNext()== null) {
 				N1.setNext(new Node<Integer>(t1.getValue()));
 			}
