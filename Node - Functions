@@ -250,6 +250,41 @@ public static Node<Integer> bubbleSort(Node<Integer> First)
           	}
           	return sum;
    	}
+    
+    // הפונקציה מקבלת רשימה ומספר
+	//הפונקציה מחזירה את הרשימה ללא האיברים בהם הופיע המספר
+	public static Node<Integer> DeleteNodesByNum(Node<Integer> N, int num) {
+		Node<Integer> head = N;
+		// אם יש מספר אסור באיבר הראשון מקדמים את הרשימה כולה קדימה, מוחקים את האיבר
+		// הראשון
+		if (head.getValue() == num) {
+			N = head.getNext();
+		}
+		// בדיקת מתקדמת על מספר אסור
+		while (head.hasNext()) {
+			// אם המספר הבא אחרי הקיים הוא האסור, ויש שני איברים קדימה, מדלגים על האיבר הבא
+			if (head.getNext().getValue() == num && head.getNext().hasNext()) {
+				System.out.println(head.getNext().getValue());
+				// האיבר הבא הוא מה שהיה קודם שניים קדימה
+				head.setNext(head.getNext().getNext());
+			}
+			// אם אין שניים קדימה, אבל יש מספר אסור
+			else if (head.getNext().getValue() == num) {
+
+				System.out.println(head.getNext().getValue());
+				// אנחנו יודעים שאין שניים קדימה, ולכן זה סוף הרשימה, אז מגדירים את האיבר הבא
+				// כנאל
+				head.setNext(null);
+				// ידוע שזה האיבר האחרון ואין סיבה להמשיך את הבדיקה
+				return N;
+			}
+			// אם לא מצאנו איברים אסורים, מתקדמים
+			else {
+				head = head.getNext();
+			}
+		}
+		return N;
+	}
 
   
   
