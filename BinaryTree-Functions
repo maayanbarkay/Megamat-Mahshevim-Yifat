@@ -604,6 +604,8 @@ public static int Sum(BinNode<Integer> head)
 		return;
 	}
 	
+	//טענת כניסה: הפעולה מקבלת מערך ריק חלקית או לגמרי ומספר
+	//טענת יציאה: הפעולה מכניסה את המספר למערך במקום הראשון שפנוי ועוצרת
 	public static void insert(int num, int RA [])
 	{
 		for (int i = 0; i < RA.length; i++) 
@@ -615,7 +617,7 @@ public static int Sum(BinNode<Integer> head)
 	}
 	
 	//טענת כניסה: הפעולה מקבלת עץ בינארי
-	//inOrder(NLR)טענת יציאה: הפעולה מסרדת את המערך בסדר 
+	//inOrder(LNR)טענת יציאה: הפעולה מסרדת את המערך בסדר 
 	public static void inOrder (BinNode<Integer> root , int[] in) 
 	{
 		if(isLeaf(root))
@@ -643,7 +645,7 @@ public static int Sum(BinNode<Integer> head)
 	
 	
 	//טענת כניסה: הפעולה מקבלת עץ בינארי
-	//postOrder(NLR)טענת יציאה: הפעולה מסרדת את המערך בסדר 
+	//postOrder(LRN)טענת יציאה: הפעולה מסרדת את המערך בסדר 
 	public static void postOrder (BinNode<Integer> root , int[] post) 
 	{
 		if(isLeaf(root))
