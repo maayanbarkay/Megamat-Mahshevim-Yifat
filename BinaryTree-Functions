@@ -583,4 +583,81 @@ public static int Sum(BinNode<Integer> head)
 	
 	}
   
+  public static void preOrder (BinNode<Integer> root , int[] pre) 
+	{
+		if (root != null) 
+		{
+			insert(root.getValue(), pre);
+			if(root.hasLeft() && root.hasRight())
+			{
+				preOrder(root.getLeft(), pre);
+				preOrder(root.getRight(), pre);
+			}
+			else if (root.hasLeft() && !root.hasRight())		
+				preOrder(root.getLeft(), pre);
+			else if (!root.hasLeft() && root.hasRight())
+				preOrder(root.getRight(), pre);
+		}
+		return;
+	}
+	
+	public static void insert(int num, int RA [])
+	{
+		for (int i = 0; i < RA.length; i++) 
+			if (RA[i] == 0)
+			{
+				RA[i] = num;
+				return;
+			}
+	}
+	
+	public static void inOrder (BinNode<Integer> root , int[] in) 
+	{
+		if(isLeaf(root))
+		{
+			insert(root.getValue(), in);
+			return;
+		}
+		if (root.hasLeft() && root.hasRight())
+		{
+			inOrder(root.getLeft(), in);
+			insert(root.getValue(), in);
+			inOrder(root.getRight(), in);
+		}
+		else if (root.hasLeft() && !root.hasRight())
+		{
+			inOrder(root.getLeft(), in);
+			insert(root.getValue(), in);
+		}
+		else if (!root.hasLeft() && root.hasRight())
+		{
+			insert(root.getValue(), in);
+			inOrder(root.getRight(), in);
+		}
+	}
+	
+	public static void postOrder (BinNode<Integer> root , int[] post) 
+	{
+		if(isLeaf(root))
+		{
+			insert(root.getValue(), post);
+			return;
+		}
+		if (root.hasLeft() && root.hasRight())
+		{
+			postOrder(root.getLeft(), post);
+			postOrder(root.getRight(), post);
+			insert(root.getValue(), post);
+		}
+		else if (root.hasLeft() && !root.hasRight())
+		{
+			postOrder(root.getLeft(), post);
+			insert(root.getValue(), post);
+		}
+		else if (!root.hasLeft() && root.hasRight())
+		{
+			postOrder(root.getRight(), post);
+			insert(root.getValue(), post);
+		}
+	}
   
