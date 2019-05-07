@@ -670,4 +670,22 @@ public static int Sum(BinNode<Integer> head)
 			insert(root.getValue(), post);
 		}
 	}
+	//הפעולה בודקת אם יש מסלול עולה מעלים לשורש בערכים (כל בן צריך להיו גדול מהקודם לו)
+	public static boolean UpPath (BinNode <Integer> N ) {
+		if (Tree_Ezer.isLeaf(N)) {
+			return true;
+		}
+		
+		boolean left = N.hasLeft() && N.getLeft().getValue() > N.getValue();
+		
+		boolean right = N.hasRight() && N.getRight().getValue() > N.getValue();
+		if (right || left) {
+			return ( left && UpPath(N.getLeft())) || ( right && UpPath (N.getRight()));
+		}
+		return false;
+	}
+	
+	
+	
+	
   
